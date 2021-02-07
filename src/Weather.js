@@ -1,27 +1,48 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./Weather.css";
 import Location from "./Location.js";
 import Info from "./Info.js";
 import Forecast from "./Forecast.js";
 import SearchIcon from '@material-ui/icons/Search';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import axios from 'axios';
 
 export default function Weather() {
+    const form = useRef();
+    let[city, setCity] = useState("");
+
+    function search(event) {
+        event.preventDefault();
+        getWeather();
+    }
+
+    function updateCity(event) {
+        setCity(event.target.value);
+    }
+
+    function getWeather() {
+        var url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=de721be4f431ff99a9769e3b29d705a6&units=metric`;
+        axios.get(url).
+        then(result => {
+            debugger;
+        });
+    }
+
     return (
         <div className="Weather">
             <div className="row">
-                <form>
+                <form onSubmit={search} ref={form}>
                     <div className="row">
                         <div className="col-10 Weather-search">
-                            <input type="Search" placeholder="Enter a city..." className="form-control" />
+                            <input type="Search" placeholder="Enter a city..." className="form-control" onChange={updateCity} />
                         </div>
                         <div className="col-1">
-                            <button type="Submit" className="btn Weather-btn-search" value="Search">
+                            <button id='searchButton' type="Submit" className="btn Weather-btn-search" value="Search" onClick={e => form.current.buttonId=e.target.id}>
                                 <SearchIcon />
                             </button>    
                         </div>
                         <div className="col-1">
-                            <button type="Submit" className="btn Weather-btn-location" value="Location">
+                            <button id='locationButton' type="Submit" className="btn Weather-btn-location" value="Location" onClick={e => form.current.buttonId=e.target.id}>
                                 <LocationOnIcon />
                             </button>    
                         </div>
