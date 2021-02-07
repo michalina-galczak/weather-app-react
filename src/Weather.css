@@ -1,0 +1,24 @@
+.Weather {
+    height: 95%;
+}
+
+form {
+    background-image: url("./images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: 700px 500px;
+    border: 2px solid White;
+    border-radius: 15px;
+    width: 700px;
+    height: 500px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.Weather-btn-search {
+    background-color: lightskyblue !important;
+}
+
+.Weather-btn-location {
+    background-color: orange !important;
+}
