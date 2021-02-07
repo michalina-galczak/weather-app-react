@@ -1,0 +1,11 @@
+.Forecast {
+    width: 100%;
+}
+
+.Forecast p {
+    line-height: 20px;
+}
+
+.Forecast-icon {
+    font-size: 40px;
+}

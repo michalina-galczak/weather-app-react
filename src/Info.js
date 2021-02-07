@@ -16,6 +16,7 @@ export default function Info(props) {
                     <p className="Info-maxmin">H: {props.max}°C L: {props.min}°C</p>
                 </div>
                 <div className="col-md-6 my-auto Info-values">
+                    <p>Real Feel: <b>{props.realFeel}°C</b></p>
                     <p>Precipitation: <b>{props.precipitation}%</b></p>
                     <p>Humidity: <b>{props.humidity}%</b></p>
                     <p>Wind Speed: <b>{props.windSpeed} Km/h</b></p>

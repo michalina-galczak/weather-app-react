@@ -29,3 +29,8 @@ form {
 .Weather-info {
     padding: 5px 0 0 30px;
 }
+
+.Weather-forecast {
+    width: 100%;
+    padding-top: 60px;
+}
