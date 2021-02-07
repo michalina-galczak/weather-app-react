@@ -1,0 +1,23 @@
+.Info {
+    height: 100%;
+    width: 100%;
+}
+
+.Info-emoji {
+    font-size: 80px;
+}
+
+.Info-degrees {
+    font-size: 60px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.Info-values {
+    padding-top: 30px;
+    text-align: right;
+}
+
+.Info p {
+    line-height: 4px;
+}
