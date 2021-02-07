@@ -14,12 +14,28 @@ form {
     padding: 20px;
 }
 
+.Weather-search {
+    margin-right: -22px;
+}
+
 .Weather-btn-search {
+    border: 1px solid lightskyblue;
     background-color: lightskyblue !important;
 }
 
+.Weather-btn-search:hover {
+    border: 1px solid lightskyblue;
+    background-color: lightcyan !important;
+}
+
 .Weather-btn-location {
+    border: 1px solid orange;
     background-color: orange !important;
+}
+
+.Weather-btn-location:hover {
+    border: 1px solid orange;
+    background-color: rgb(255, 225, 211) !important;
 }
 
 .Weather-location {
