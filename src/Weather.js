@@ -23,7 +23,7 @@ export default function Weather() {
                         <Location city="Lisbon" />
                     </div>
                     <div className="row Weather-info">
-                        <Info temp="12" desc="Rainy" precipitation="89" humidity="82" windSpeed="40" />
+                        <Info temp="12" max="14" min="10" desc="Rainy" precipitation="89" humidity="82" windSpeed="40" />
                     </div>
                 </form>
             </div>

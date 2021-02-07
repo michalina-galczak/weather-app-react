@@ -13,6 +13,10 @@
     margin-top: 20px;
 }
 
+.Info-maxmin {
+    margin-left: -10px;
+}
+
 .Info-values {
     padding-top: 30px;
     text-align: right;
