@@ -6,7 +6,8 @@ function App() {
     <div className="App container">
       <Weather />
       <footer>
-      <a href='https://www.freepik.com/vectors/background'>Background vector created by pikisuperstar - www.freepik.com</a>
+        <p>Source code on <a href="https://github.com/michalina-galczak/weather-app-react">GitHub</a>. Coded by Michalina Galczak</p>
+        <p><a href='https://www.freepik.com/vectors/background'>Background vector created by pikisuperstar - www.freepik.com</a></p>
       </footer>
     </div>
   );
