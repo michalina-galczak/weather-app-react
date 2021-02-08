@@ -11,6 +11,7 @@ export default function Weather() {
     const form = useRef();
     let[city, setCity] = useState("");
     let[data, setData] = useState({name: ''});
+    let[forecast, setForecast] = useState({});
 
     function search(event) {
         event.preventDefault();
@@ -22,9 +23,9 @@ export default function Weather() {
     }
 
     function getWeather() {
-        var url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=de721be4f431ff99a9769e3b29d705a6&units=metric`;
-        axios.get(url).
-        then(result => {
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=de721be4f431ff99a9769e3b29d705a6&units=metric`;
+        axios.get(url)
+        .then(result => {
             if(result !== undefined && result.data !== undefined) {
                 setData(result.data);
             }
@@ -32,7 +33,25 @@ export default function Weather() {
                 alert(`There is no weather info available for ${city}.`);
             }
         }).catch(error => {
+            console.log(error);
             alert('There was an error getting the weather info!');
+        });
+
+        let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=de721be4f431ff99a9769e3b29d705a6&units=metric`;
+        axios.get(forecastUrl)
+        .then(result => {
+            if(result !== undefined && result.list !== undefined) {
+                setForecast(result.data);
+
+                console.log(result);
+            }
+            else {
+                alert(`There is no forecast info available for ${city}.`);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            alert('There was an error getting the forecast info!');
         });
     }
 

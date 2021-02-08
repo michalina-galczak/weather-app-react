@@ -17,7 +17,7 @@ export default function Info(p) {
                         <img src={iconPath} alt='' className="Info-emoji" />
                     </div>
                     <div className="col-md-3 my-auto">
-                        <span className="Info-degrees">{temp}°C|F</span>
+                        <span className="Info-degrees">{temp}°C</span>
                         <p className="Info-maxmin">H: {max}°C L: {min}°C</p>
                     </div>
                     <div className="col-md-6 my-auto Info-values">
