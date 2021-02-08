@@ -10,6 +10,7 @@ import axios from 'axios';
 export default function Weather() {
     const form = useRef();
     let[city, setCity] = useState("");
+    let[data, setData] = useState({name: ''});
 
     function search(event) {
         event.preventDefault();
@@ -24,7 +25,14 @@ export default function Weather() {
         var url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=de721be4f431ff99a9769e3b29d705a6&units=metric`;
         axios.get(url).
         then(result => {
-            debugger;
+            if(result !== undefined && result.data !== undefined) {
+                setData(result.data);
+            }
+            else {
+                alert(`There is no weather info available for ${city}.`);
+            }
+        }).catch(error => {
+            alert('There was an error getting the weather info!');
         });
     }
 
@@ -48,10 +56,10 @@ export default function Weather() {
                         </div>
                     </div>
                     <div className="row Weather-location">
-                        <Location city="Lisbon" />
+                        <Location city={data.name} />
                     </div>
                     <div className="row Weather-info">
-                        <Info temp="12" max="14" min="10" realFeel="11" desc="Rainy" precipitation="89" humidity="82" windSpeed="40" />
+                        <Info data={data} />
                     </div>
                     <div className="row Weather-forecast">
                         <Forecast />
