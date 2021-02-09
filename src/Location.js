@@ -8,14 +8,19 @@ export default function Location(props) {
         return `${days[d.getDay()]}, ${d.toLocaleTimeString()}`;
     }
 
-    return (
-        <div className="Location">
-            <div className="row">
-                <h1>{props.city}</h1>
+    if(props.city !== "") {
+        return (
+            <div className="Location">
+                <div className="row">
+                    <h1>{props.city}</h1>
+                </div>
+                <div className="row">
+                    <span>{getDayAndTime()}</span>
+                </div>
             </div>
-            <div className="row">
-                <span>{getDayAndTime()}</span>
-            </div>
-        </div>
-    );
+        );
+    }
+    else {
+        return (<div></div>);
+    }
 }

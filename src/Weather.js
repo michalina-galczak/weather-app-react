@@ -14,17 +14,37 @@ export default function Weather() {
     let[formClass, setFormClass] = useState("Weather-form");
     let[forecastData, setForecastData] = useState("");
 
-    function search(event) {
-        event.preventDefault();
-        getWeather();
-    }
-
     function updateCity(event) {
         setCity(event.target.value);
     }
 
-    function getWeather() {
-        let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=cde0d1f3fb07f748e651759822edfb07&units=metric`;
+    function search (event) {
+        event.preventDefault();
+        let url = "";
+        let forecastUrl = "";
+
+        if(event.currentTarget.buttonId === 'search') {
+            url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=cde0d1f3fb07f748e651759822edfb07&units=metric`;
+            forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=cde0d1f3fb07f748e651759822edfb07&units=metric`;
+            getWeather(url, forecastUrl);
+        }
+        else {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    let latitude = position.coords.latitude;
+                    let longitude = position.coords.longitude;
+    
+                    url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=cde0d1f3fb07f748e651759822edfb07&units=metric`;
+                    forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=cde0d1f3fb07f748e651759822edfb07&units=metric`;
+                    getWeather(url, forecastUrl);
+                });
+              } else {
+                alert('Geolocation is disabled.');
+              }
+        }
+    }
+
+    function getWeather(url, forecastUrl) {
         axios.get(url)
         .then(result => {
             if(result !== undefined && result.data !== undefined) {
@@ -39,7 +59,6 @@ export default function Weather() {
             alert('There was an error getting the weather info!');
         });
 
-        let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=cde0d1f3fb07f748e651759822edfb07&units=metric`;
         axios.get(forecastUrl)
         .then(result => {
             if(result !== undefined && result.data !== undefined) {
@@ -66,12 +85,12 @@ export default function Weather() {
                             <input type="Search" placeholder="Enter a city..." className="form-control" onChange={updateCity} />
                         </div>
                         <div className="col-1">
-                            <button id='searchButton' type="Submit" className="btn Weather-btn-search" value="Search" onClick={e => form.current.buttonId=e.target.id}>
+                            <button id='searchButton' type="Submit" className="btn Weather-btn-search" value="Search" onClick={e => form.current.buttonId='search'}>
                                 <SearchIcon />
                             </button>    
                         </div>
                         <div className="col-1">
-                            <button id='locationButton' type="Submit" className="btn Weather-btn-location" value="Location" onClick={e => form.current.buttonId=e.target.id}>
+                            <button id='locationButton' type="Submit" className="btn Weather-btn-location" value="Location" onClick={e => form.current.buttonId='geo'}>
                                 <LocationOnIcon />
                             </button>    
                         </div>
