@@ -11,6 +11,7 @@ export default function Weather() {
     const form = useRef();
     let[city, setCity] = useState("");
     let[data, setData] = useState({name: ''});
+    let[formClass, setFormClass] = useState("Weather-form");
     let[forecastData, setForecastData] = useState("");
 
     function search(event) {
@@ -28,6 +29,7 @@ export default function Weather() {
         .then(result => {
             if(result !== undefined && result.data !== undefined) {
                 setData(result.data);
+                setFormClass("Weather-form Weather-max");
             }
             else {
                 alert(`There is no weather info available for ${city}.`);
@@ -58,7 +60,7 @@ export default function Weather() {
     return (
         <div className="Weather">
             <div className="row">
-                <form onSubmit={search} ref={form}>
+                <form onSubmit={search} ref={form} className={formClass}>
                     <div className="row">
                         <div className="col-10 Weather-search">
                             <input type="Search" placeholder="Enter a city..." className="form-control" onChange={updateCity} />

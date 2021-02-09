@@ -2,16 +2,20 @@
     height: 95%;
 }
 
-form {
+.Weather-form {
     background-image: url("./images/background.jpg");
     background-repeat: no-repeat;
     background-size: 700px 500px;
     border: 2px solid White;
     border-radius: 15px;
     width: 700px;
-    height: 500px;
+    height: 100px;
     margin: auto;
     padding: 20px;
+}
+
+.Weather-max {
+    height: 500px;
 }
 
 .Weather-search {
