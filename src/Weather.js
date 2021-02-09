@@ -11,7 +11,7 @@ export default function Weather() {
     const form = useRef();
     let[city, setCity] = useState("");
     let[data, setData] = useState({name: ''});
-    let[forecast, setForecast] = useState({});
+    let[forecastData, setForecastData] = useState("");
 
     function search(event) {
         event.preventDefault();
@@ -23,7 +23,7 @@ export default function Weather() {
     }
 
     function getWeather() {
-        let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=de721be4f431ff99a9769e3b29d705a6&units=metric`;
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=cde0d1f3fb07f748e651759822edfb07&units=metric`;
         axios.get(url)
         .then(result => {
             if(result !== undefined && result.data !== undefined) {
@@ -37,21 +37,21 @@ export default function Weather() {
             alert('There was an error getting the weather info!');
         });
 
-        let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=de721be4f431ff99a9769e3b29d705a6&units=metric`;
+        let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=cde0d1f3fb07f748e651759822edfb07&units=metric`;
         axios.get(forecastUrl)
         .then(result => {
-            if(result !== undefined && result.list !== undefined) {
-                setForecast(result.data);
-
-                console.log(result);
+            if(result !== undefined && result.data !== undefined) {
+                setForecastData(result.data);
             }
             else {
                 alert(`There is no forecast info available for ${city}.`);
+                setForecastData(null);
             }
         })
         .catch(error => {
             console.log(error);
             alert('There was an error getting the forecast info!');
+            setForecastData(null);
         });
     }
 
@@ -81,7 +81,7 @@ export default function Weather() {
                         <Info data={data} />
                     </div>
                     <div className="row Weather-forecast">
-                        <Forecast />
+                        <Forecast data={forecastData} />
                     </div>
                 </form>
             </div>
