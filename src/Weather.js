@@ -22,10 +22,16 @@ export default function Weather() {
 
     function search (event) {
         event.preventDefault();
+
         let url = "";
         let forecastUrl = "";
 
         if(event.currentTarget.buttonId === 'search') {
+            if(city === "") {
+                alert("Insert a city please.");
+                return;
+            }
+
             url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=cde0d1f3fb07f748e651759822edfb07&units=metric`;
             forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=cde0d1f3fb07f748e651759822edfb07&units=metric`;
             getWeather(url, forecastUrl);
@@ -82,7 +88,7 @@ export default function Weather() {
                 setControlClass("Weather-control");
             }
             .bind(this),
-            200
+            500
         );
     }
 
@@ -101,12 +107,12 @@ export default function Weather() {
                         </div>
                         <div className="col-1">
                             <button id='searchButton' type="Submit" className="btn Weather-btn-search" value="Search" onClick={e => form.current.buttonId='search'}>
-                                <SearchIcon />
+                                <SearchIcon style={{fill: "#FFFF"}} />
                             </button>    
                         </div>
                         <div className="col-1">
                             <button id='locationButton' type="Submit" className="btn Weather-btn-location" value="Location" onClick={e => form.current.buttonId='geo'}>
-                                <LocationOnIcon />
+                                <LocationOnIcon style={{fill: "#FFFF"}} />
                             </button>    
                         </div>
                     </div>
