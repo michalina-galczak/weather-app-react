@@ -16,6 +16,7 @@
 
 .Weather-max {
     height: 500px;
+    transition: height 0.15s;
 }
 
 .Weather-search {
@@ -53,5 +54,5 @@
 .Weather-forecast {
     width: 100%;
     padding-top: 20px;
-    margin-left: 1px;
+    margin-left: 4px !important;
 }

@@ -9,10 +9,10 @@ import axios from 'axios';
 
 export default function Weather() {
     const form = useRef();
-    let[city, setCity] = useState("");
-    let[data, setData] = useState({name: ''});
-    let[formClass, setFormClass] = useState("Weather-form");
-    let[forecastData, setForecastData] = useState("");
+    const[city, setCity] = useState("");
+    const[data, setData] = useState({name: '', main: { temp: 0}});
+    const[formClass, setFormClass] = useState("Weather-form");
+    const[forecastData, setForecastData] = useState("");
 
     function updateCity(event) {
         setCity(event.target.value);
