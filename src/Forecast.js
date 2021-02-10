@@ -7,7 +7,7 @@ export default function Forecast(props) {
     if(props.data !== undefined) {
         return (
             <div className="Forecast">
-                <ForecastDays data={props.data} />
+                <ForecastDays data={props.data} unit={props.unit} />
             </div>
         );
     }

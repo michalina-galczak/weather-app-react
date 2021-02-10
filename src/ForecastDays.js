@@ -1,5 +1,6 @@
 import React from "react";
 import "./ForecastDays.css";
+import Temperature from "./Temperature.js";
 
 export default function ForecastDays(props) {
     const days = props.data;
@@ -37,7 +38,7 @@ export default function ForecastDays(props) {
             <div key={index} className="col-md-2 my-auto">
               <p><b>{formatHours(value.dt * 1000, days.city.timezone)}</b></p>
               <img src={iconPath} alt='' className="ForecastDays-icon" />
-              <p>{temp}ºC</p>
+              <p><Temperature temp={temp} unit={props.unit} /></p>
             </div>);
 
           if(index === 5) {

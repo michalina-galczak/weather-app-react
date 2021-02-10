@@ -13,6 +13,8 @@ export default function Weather() {
     const[data, setData] = useState({name: '', main: { temp: 0}});
     const[formClass, setFormClass] = useState("Weather-form");
     const[forecastData, setForecastData] = useState("");
+    const[unit, setUnit] = useState("celsius");
+    const[controlClass, setControlClass] = useState("Weather-control Weather-control-inv");
 
     function updateCity(event) {
         setCity(event.target.value);
@@ -74,6 +76,19 @@ export default function Weather() {
             alert('There was an error getting the forecast info!');
             setForecastData(null);
         });
+
+        setTimeout(
+            function() {
+                setControlClass("Weather-control");
+            }
+            .bind(this),
+            200
+        );
+    }
+
+    function updateUnit(event, u) {
+        event.preventDefault();
+        setUnit(u);
     }
 
     return (
@@ -96,13 +111,18 @@ export default function Weather() {
                         </div>
                     </div>
                     <div className="row Weather-location">
-                        <Location city={data.name} />
+                        <div className="col-10">
+                            <Location city={data.name} />
+                        </div>
+                        <div className="col-2">
+                            <p className={controlClass}><a href="/" onClick={(e) => { updateUnit(e, "celsius")}}>C </a>|<a href="/" onClick={(e) => {updateUnit(e, "fahreinheits")}}> F</a></p>
+                        </div>
                     </div>
                     <div className="row Weather-info">
-                        <Info data={data} />
+                        <Info data={data} unit={unit} />
                     </div>
                     <div className="row Weather-forecast">
-                        <Forecast data={forecastData} />
+                        <Forecast data={forecastData} unit={unit} />
                     </div>
                 </form>
             </div>
