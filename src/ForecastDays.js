@@ -1,6 +1,7 @@
 import React from "react";
 import "./ForecastDays.css";
 import Temperature from "./Temperature.js";
+import Icon from "./Icon.js";
 
 export default function ForecastDays(props) {
     const days = props.data;
@@ -33,12 +34,12 @@ export default function ForecastDays(props) {
       if(days !== undefined && days.list !== undefined) {
         for(const [index, value] of days.list.entries()) {
           let temp = Math.round(value.main.temp);
-          let iconPath = "http://openweathermap.org/img/wn/" + value.weather[0].icon + "@2x.png";
+          let icon = value.weather[0].icon;
           divs.push(
             <div key={index} className="col-md-2 my-auto">
               <p><b>{formatHours(value.dt * 1000, days.city.timezone)}</b></p>
-              <img src={iconPath} alt='' className="ForecastDays-icon" />
-              <p><Temperature temp={temp} unit={props.unit} /></p>
+              <p className="ForecastDays-icon"><Icon code={icon} size={60} color="#FFFF" animate={true} /></p>
+              <p className="ForecastDays-temp"><Temperature temp={temp} unit={props.unit} /></p>
             </div>);
 
           if(index === 5) {

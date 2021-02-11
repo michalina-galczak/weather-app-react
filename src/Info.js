@@ -1,10 +1,11 @@
 import React from "react";
 import "./Info.css";
 import Temperature from "./Temperature.js";
+import Icon from "./Icon.js";
 
 export default function Info(p) {
     if(p.data !== undefined && p.data.weather !== undefined) {
-        let iconPath = "http://openweathermap.org/img/wn/" + p.data.weather[0].icon + "@2x.png";
+        let icon = p.data.weather[0].icon;
         let temp = Math.round(p.data.main.temp);
         let max = Math.round(p.data.main.temp_max);
         let min = Math.round(p.data.main.temp_min);
@@ -18,7 +19,7 @@ export default function Info(p) {
                 </div>
                 <div className="row">
                     <div className="col-md-2">
-                        <img src={iconPath} alt='' className="Info-emoji" />
+                        <p className="Info-emoji"><Icon code={icon} size={100} color="#FFFF" animate={true} /></p>
                     </div>
                     <div className="col-md-5 my-auto">
                         <span className="Info-degrees"><Temperature unit={p.unit} temp={temp} /></span>

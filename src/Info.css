@@ -4,9 +4,7 @@
 }
 
 .Info-emoji {
-    height: 150px;
-    width: 150px;
-    margin-left: -30px;
+    margin: 20px 0 0 30px;
 }
 
 .Info-degrees {

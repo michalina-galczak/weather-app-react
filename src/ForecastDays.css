@@ -1,4 +1,7 @@
 .ForecastDays-icon {
-    height: 70px;
-    margin-top: -20px;
+    height: 55px;
+}
+
+.ForecastDays-temp {
+    line-height: 1px;
 }
